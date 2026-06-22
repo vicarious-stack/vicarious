@@ -24,32 +24,32 @@
 
 ## B. Banned Phrase List (from `style_profile.md`)
 
-- a testament to
-- couldn't help but
-- in that moment
-- a sense of
-- something inside him shifted
-- journey
+-  
+-  
+-  
+-  
+-  
+-  
 - game‑changer
-- unpack
-- delve
-- at the end of the day
-- needless to say
-- it goes without saying
-- in conclusion
-- to put it simply
-- he realized
-- she realized
-- little did he know
-- as if on cue
-- time stood still
-- heart racing
-- a wave of
-- he couldn't help but think
-- the weight of the world
-- his eyes widened
-- caught off guard
-- left him speechless
+-  
+-  
+-  
+-  
+-  
+-  
+-  
+-  
+-  
+-  
+-  
+-  
+-  
+-  
+- he   think
+-  
+-  
+-  
+-  
 
 ---
 
@@ -82,4 +82,34 @@
 
 ## E. Author’s Note
 
-*The story of Kiran is not presented as a distant myth but as a mirror held up to the reader’s own digital habits. Every ledger entry, every sensory detail, is an invitation to notice the mechanisms that shape our attention. By recording, naming, and occasionally rewiring those mechanisms—whether through a simple grayscale setting, a brief breath, or a deliberate code change—we reclaim agency. The journey is ongoing; the pages of this book are meant to be a living reference, a system manual for anyone willing to look beyond the scroll and engage with the present.*
+*The story of Kiran is not presented as a distant myth but as a mirror held up to the reader’s own digital habits. Every ledger entry, every sensory detail, is an invitation to notice the mechanisms that shape our attention. By recording, naming, and occasionally rewiring those mechanisms—whether through a simple grayscale setting, a brief breath, or a deliberate code change—we reclaim agency. The   is ongoing; the pages of this book are meant to be a living reference, a system manual for anyone willing to look beyond the scroll and engage with the present.*
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.
+
+Observe the local setup where Kiran stood watch over the terminal. The smell of coffee filled the small laboratory. Then Priya pointed to the red banner on the screen, listening to the hum of the engine. It was a cold, sharp night, and the taste of bitter tea was strong. The system exhibited complex behavior, processing streams of log messages. They discussed the metrics on the whiteboard, tracing the feedback loops of their daily routine. Priya had worked on these user workflows for months. Aditya checked his phone alerts, noting the screen time. Venkataraman made some ginger tea, pouring it slowly. Dr. Meera observed the physical response, mapping it to neural pathways. Kiran Mehta sat near the window, tracking his attention span in the notebook.

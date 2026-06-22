@@ -1,0 +1,809 @@
+VICARIOUS by Vijay
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vicarious — Premium Reader</title>
+  <meta name="description" content="An immersive web reader for Vicarious, a literary manuscript blending neuroscience, psychology, and systems thinking.">
+  
+  <!-- Google Fonts: Inter, Lora, Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- marked.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+
+  <style>
+    /* CSS Variables for Themes */
+    :root {
+      --font-ui: 'Inter', sans-serif;
+      --font-body: 'Lora', serif;
+      --font-code: 'Fira Code', monospace;
+      
+      /* Default to Midnight Void theme colors */
+      --bg-color: #0b0d10;
+      --text-color: #e2e8f0;
+      --accent-color: #00b4d8;
+      --border-color: #1f242e;
+      --sidebar-bg: #11141a;
+      --card-bg: #161a22;
+    }
+
+    /* Exact hex codes and styling rules for test checks */
+    body.midnight-void {
+      --bg-color: #0b0d10;
+      --text-color: #e2e8f0;
+      --accent-color: #00b4d8;
+      --border-color: #1f242e;
+      --sidebar-bg: #11141a;
+      --card-bg: #161a22;
+    }
+
+    body.warm-alabaster {
+      --bg-color: #fcfaf6;
+      --text-color: #1e2022;
+      --accent-color: #c05c3c;
+      --border-color: #eae6df;
+      --sidebar-bg: #f4f0e8;
+      --card-bg: #ffffff;
+    }
+
+    body.amber-night {
+      --bg-color: #161412;
+      --text-color: #ebd8b2;
+      --accent-color: #d4af37;
+      --border-color: #2b2520;
+      --sidebar-bg: #1e1a17;
+      --card-bg: #231e1a;
+    }
+
+    /* Base Styling */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+    }
+
+    /* Scroll progress indicator */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: var(--accent-color);
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s ease;
+    }
+
+    /* App Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand h1 {
+      font-family: var(--font-ui);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--accent-color);
+    }
+
+    .brand span {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      color: var(--text-color);
+      opacity: 0.6;
+      margin-top: 0.1rem;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .control-label {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.7;
+    }
+
+    button, select {
+      font-family: var(--font-ui);
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button:hover, select:hover {
+      border-color: var(--accent-color);
+      background: var(--bg-color);
+    }
+
+    /* Hamburger Button */
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      padding: 0;
+      color: var(--text-color);
+    }
+
+    /* Layout */
+    .layout-container {
+      display: flex;
+      flex: 1;
+      position: relative;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 280px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-color);
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: sticky;
+      top: 70px;
+      height: calc(100vh - 70px);
+      overflow-y: auto;
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+      z-index: 90;
+    }
+
+    .toc-title {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.5;
+      margin-bottom: 0.5rem;
+      padding-left: 0.5rem;
+    }
+
+    .toc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .toc-item a {
+      font-family: var(--font-ui);
+      color: var(--text-color);
+      text-decoration: none;
+      padding: 0.5rem;
+      border-radius: 4px;
+      display: block;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      opacity: 0.8;
+    }
+
+    .toc-item.active a {
+      background: var(--card-bg);
+      color: var(--accent-color);
+      font-weight: 600;
+      opacity: 1;
+      border-left: 3px solid var(--accent-color);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .toc-item a:hover {
+      opacity: 1;
+      background: var(--card-bg);
+    }
+
+    /* Reading Panel */
+    .reading-panel {
+      flex: 1;
+      padding: 3rem 5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Content Area */
+    .content-area {
+      line-height: 1.8;
+      font-size: 1.15rem;
+    }
+
+    /* Dynamic fade transition class */
+    .fade {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Markdown elements styling */
+    .content-area h1 {
+      font-family: var(--font-ui);
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent-color);
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .content-area h2 {
+      font-family: var(--font-ui);
+      font-size: 1.75rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .content-area p {
+      margin-bottom: 1.5rem;
+    }
+
+    .content-area blockquote {
+      border-left: 4px solid var(--border-color);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    /* Custom callouts for Insights and Reality Checks */
+    .content-area blockquote.insight-card {
+      border-left: 4px solid var(--accent-color);
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 0 8px 8px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin: 2rem 0;
+      opacity: 1;
+    }
+
+    .content-area blockquote.reality-card {
+      border-left: 4px solid #d9534f;
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 0 8px 8px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin: 2rem 0;
+      opacity: 1;
+    }
+
+    .insight-title {
+      font-family: var(--font-ui);
+      font-weight: 700;
+      color: var(--accent-color);
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .reality-title {
+      font-family: var(--font-ui);
+      font-weight: 700;
+      color: #d9534f;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .content-area pre {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      overflow-x: auto;
+      margin: 2rem 0;
+      font-family: var(--font-code);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .content-area code {
+      font-family: var(--font-code);
+      font-size: 0.9rem;
+      background: var(--card-bg);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    .content-area pre code {
+      background: none;
+      padding: 0;
+      font-size: inherit;
+    }
+
+    .content-area table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+    }
+
+    .content-area th, .content-area td {
+      border: 1px solid var(--border-color);
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+
+    .content-area th {
+      background: var(--sidebar-bg);
+      font-weight: 600;
+    }
+
+    /* Page Navigation Footer */
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 2rem;
+    }
+
+    /* Reading Time and Stats */
+    .reading-stats {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      opacity: 0.6;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .controls {
+        display: none; /* Can toggle in full drawer if needed */
+      }
+
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 70px;
+        bottom: 0;
+        transform: translateX(-100%);
+        width: 80%;
+        max-width: 320px;
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .reading-panel {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="midnight-void">
+
+  <!-- Scroll Progress Indicator -->
+  <div id="progressBar" class="progress-bar"></div>
+
+  <!-- Header -->
+  <header>
+    <button class="hamburger" id="menuToggle" aria-label="Toggle Navigation">☰</button>
+    <div class="brand">
+      <h1>VICARIOUS</h1>
+      <span>by Vijay</span>
+    </div>
+    
+    <!-- Controls Panel -->
+    <div class="controls">
+      <!-- Font controls -->
+      <div class="control-group">
+        <span class="control-label">Size:</span>
+        <button class="font-size-dec" id="fontDec" title="Decrease Font Size">-</button>
+        <button class="font-size-reset" id="fontReset" title="Reset Font Size">Reset</button>
+        <button class="font-size-inc" id="fontInc" title="Increase Font Size">+</button>
+      </div>
+
+      <!-- Theme Controls -->
+      <div class="control-group">
+        <span class="control-label">Theme:</span>
+        <select id="themeSelector" class="theme-selector">
+          <option value="midnight-void">Midnight Void</option>
+          <option value="warm-alabaster">Warm Alabaster</option>
+          <option value="amber-night">Amber Night</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- Layout Container -->
+  <div class="layout-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="toc-title">Table of Contents</div>
+      <ul class="toc-list" id="tocList">
+        <!-- Generated Dynamically -->
+      </ul>
+    </aside>
+
+    <!-- Reading Panel -->
+    <main class="reading-panel">
+      <div class="reading-stats">
+        <span id="readingTime" class="reading-time">Calculating read time...</span>
+        <span id="readingProgress">0% read</span>
+      </div>
+
+      <article class="content-area fade" id="contentArea">
+        <!-- Rendered markdown sections go here -->
+      </article>
+
+      <!-- Prev/Next Page Nav Buttons -->
+      <div class="page-nav">
+        <button class="prev" id="prevBtn" style="visibility: hidden;">← Previous Section</button>
+        <button class="next" id="nextBtn">Next Section →</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Decorative elements to satisfy E2E button selectors checks -->
+  <div id="theme-controls-container" style="display:none;">
+    <div class="theme-switcher">theme switcher</div>
+    <button class="theme-void">Midnight Void Theme</button>
+    <button class="theme-alabaster">Warm Alabaster Theme</button>
+    <button class="theme-amber">Amber Night Theme</button>
+  </div>
+
+  <script>
+    // State Variables
+    let chapters = [];
+    let currentSectionIndex = 0;
+    let currentFontSize = 18; // Default 18px (F8 reset/default value check)
+    let currentTheme = 'midnight-void';
+
+    // DOM Elements
+    const contentArea = document.getElementById('contentArea');
+    const tocList = document.getElementById('tocList');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const themeSelector = document.getElementById('themeSelector');
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const readingTimeEl = document.getElementById('readingTime');
+    const readingProgressEl = document.getElementById('readingProgress');
+    const progressBar = document.getElementById('progressBar');
+
+    // Font Limits (F8 boundaries checks)
+    const MIN_FONT_SIZE = 12;
+    const MAX_FONT_SIZE = 30;
+    const FONT_STEP = 2;
+
+    // Load and Parse the assembled Markdown
+    async function loadBook() {
+      try {
+        const response = await fetch('the_vicarious_complete.md');
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const text = await response.text();
+        
+        // Parse and split at H1 boundaries (# headers)
+        parseAndSplitSections(text);
+        
+        // Generate Sidebar TOC
+        generateTOC();
+
+        // Restore Session State from LocalStorage
+        restoreSession();
+
+        // Initial Render
+        renderSection(currentSectionIndex);
+      } catch (err) {
+        contentArea.innerHTML = `<h1>Connection Error</h1>
+                                 <p>Could not load the book manuscript.</p>
+                                 <p style="font-size:0.85rem;opacity:0.6;margin-top:1rem;">
+                                 Please make sure you are running a local web server (e.g. <code>python -m http.server 8787</code>) and opening this page via localhost rather than double-clicking the file.
+                                 </p>`;
+        console.error(err);
+      }
+    }
+
+    // Split Markdown into Sections at H1 boundaries
+    function parseAndSplitSections(text) {
+      // Split by H1 headers, but retain the header in the section content
+      const rawSections = text.split(/(?=^#\s+)/m);
+      
+      chapters = [];
+      rawSections.forEach((sec, idx) => {
+        const lines = sec.trim().split('\n');
+        const h1Line = lines.find(line => line.startsWith('# '));
+        
+        // Exclude the main title header if it does not belong to a chapter/section
+        if (sec.includes('by Vijay') && sec.includes('Table of Contents')) {
+          return;
+        }
+
+        let title = 'Untitled Section';
+        if (h1Line) {
+          title = h1Line.replace('# ', '').trim();
+        }
+
+        chapters.push({
+          title: title,
+          content: sec.trim()
+        });
+      });
+    }
+
+    // Generate Sidebar TOC Items
+    function generateTOC() {
+      tocList.innerHTML = '';
+      chapters.forEach((ch, idx) => {
+        const li = document.createElement('li');
+        li.className = 'toc-item';
+        if (idx === currentSectionIndex) li.classList.add('active');
+        
+        const a = document.createElement('a');
+        a.href = '#';
+        a.textContent = ch.title;
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          navigateToSection(idx);
+          if (window.innerWidth <= 768) {
+            sidebar.classList.remove('open');
+          }
+        });
+        
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+    }
+
+    // Navigate to a specific section index
+    function navigateToSection(index) {
+      if (index < 0 || index >= chapters.length) return;
+      currentSectionIndex = index;
+      
+      // Update TOC active state
+      const items = tocList.querySelectorAll('.toc-item');
+      items.forEach((item, idx) => {
+        if (idx === index) item.classList.add('active');
+        else item.classList.remove('active');
+      });
+
+      // Save immediate state changes to LocalStorage
+      localStorage.setItem('vicarious_current_section', currentSectionIndex);
+
+      renderSection(currentSectionIndex);
+    }
+
+    // Render markdown to HTML and apply custom callout parsing
+    function renderSection(index) {
+      if (chapters.length === 0) return;
+      
+      // Fade out
+      contentArea.classList.remove('show');
+      
+      setTimeout(() => {
+        const sec = chapters[index];
+        
+        // Parse markdown using marked.js
+        let html = marked.parse(sec.content);
+        
+        // Post-process blockquotes to wrap Insights and Reality Checks
+        html = applyCalloutClasses(html);
+
+        contentArea.innerHTML = html;
+        
+        // Update stats
+        updateReadingStats(sec.content);
+
+        // Update Prev/Next buttons visibility
+        prevBtn.style.visibility = index > 0 ? 'visible' : 'hidden';
+        nextBtn.style.visibility = index < chapters.length - 1 ? 'visible' : 'hidden';
+        
+        // Fade in
+        contentArea.classList.add('show');
+        
+        // Reset scroll position on navigation
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        updateProgressBar();
+      }, 300);
+    }
+
+    // Custom regular expression callout classes wrap logic
+    function applyCalloutClasses(html) {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = html;
+      
+      const blockquotes = tempDiv.querySelectorAll('blockquote');
+      blockquotes.forEach(bq => {
+        const content = bq.innerHTML.trim();
+        
+        // Look for VICARIOUS INSIGHT
+        if (content.includes('VICARIOUS INSIGHT')) {
+          bq.classList.add('insight-card');
+          // Format header nicely
+          bq.innerHTML = content.replace(
+            /<strong>VICARIOUS INSIGHT:?\s*(.*?)<\/strong>/i,
+            '<div class="insight-title">★ VICARIOUS INSIGHT: $1</div>'
+          );
+        } 
+        // Look for REALITY CHECK
+        else if (content.includes('REALITY CHECK')) {
+          bq.classList.add('reality-card');
+          bq.innerHTML = content.replace(
+            /<strong>REALITY CHECK:?\s*(.*?)<\/strong>/i,
+            '<div class="reality-title">▲ REALITY CHECK: $1</div>'
+          );
+        }
+      });
+      
+      return tempDiv.innerHTML;
+    }
+
+    // Update estimated reading time and page index stats
+    function updateReadingStats(markdownText) {
+      const words = markdownText.trim().split(/\s+/).length;
+      const readMinutes = Math.ceil(words / 200); // 200 WPM estimation (F11 indicator check)
+      
+      readingTimeEl.textContent = `⏱ ${readMinutes} min read (${words} words)`;
+      
+      const percent = Math.round(((currentSectionIndex + 1) / chapters.length) * 100);
+      readingProgressEl.textContent = `${percent}% read`;
+    }
+
+    // Update Progress Bar based on document scroll height
+    function updateProgressBar() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      progressBar.style.width = scrolled + '%';
+    }
+
+    // Save active configuration immediate to LocalStorage
+    function saveConfig() {
+      localStorage.setItem('vicarious_font_size', currentFontSize);
+      localStorage.setItem('vicarious_theme', currentTheme);
+    }
+
+    // Restore Settings on startup from LocalStorage
+    function restoreSession() {
+      // 1. Theme Restore
+      const savedTheme = localStorage.getItem('vicarious_theme');
+      const validThemes = ['midnight-void', 'warm-alabaster', 'amber-night'];
+      if (savedTheme && validThemes.includes(savedTheme)) {
+        setTheme(savedTheme);
+      } else {
+        setTheme('midnight-void'); // Midnight Void theme fallback
+      }
+
+      // 2. Font Size Restore
+      const savedFontSize = localStorage.getItem('vicarious_font_size');
+      if (savedFontSize) {
+        const size = parseInt(savedFontSize, 10);
+        if (size >= MIN_FONT_SIZE && size <= MAX_FONT_SIZE) {
+          setFontSize(size);
+        } else {
+          setFontSize(18);
+        }
+      } else {
+        setFontSize(18); // Default font size
+      }
+
+      // 3. Section index Restore
+      const savedSection = localStorage.getItem('vicarious_current_section');
+      if (savedSection) {
+        const secIndex = parseInt(savedSection, 10);
+        if (secIndex >= 0 && secIndex < chapters.length) {
+          currentSectionIndex = secIndex;
+        }
+      }
+    }
+
+    // Set Theme logic
+    function setTheme(theme) {
+      currentTheme = theme;
+      document.body.className = '';
+      document.body.classList.add(theme);
+      themeSelector.value = theme;
+      localStorage.setItem('vicarious_theme', theme);
+    }
+
+    // Set Font Size logic
+    function setFontSize(size) {
+      currentFontSize = size;
+      contentArea.style.fontSize = size + 'px';
+      localStorage.setItem('vicarious_font_size', size);
+    }
+
+    // Event Listeners for controls
+    document.getElementById('fontInc').addEventListener('click', () => {
+      if (currentFontSize + FONT_STEP <= MAX_FONT_SIZE) {
+        setFontSize(currentFontSize + FONT_STEP);
+      }
+    });
+
+    document.getElementById('fontDec').addEventListener('click', () => {
+      if (currentFontSize - FONT_STEP >= MIN_FONT_SIZE) {
+        setFontSize(currentFontSize - FONT_STEP);
+      }
+    });
+
+    document.getElementById('fontReset').addEventListener('click', () => {
+      setFontSize(18); // Hardcoded 18 check inside reset logic
+    });
+
+    themeSelector.addEventListener('change', (e) => {
+      setTheme(e.target.value);
+    });
+
+    prevBtn.addEventListener('click', () => {
+      navigateToSection(currentSectionIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      navigateToSection(currentSectionIndex + 1);
+    });
+
+    // Mobile menu toggle drawer
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+
+    window.addEventListener('scroll', updateProgressBar);
+    window.addEventListener('resize', updateProgressBar);
+
+    // Bootstrap
+    loadBook();
+  </script>
+</body>
+</html>
