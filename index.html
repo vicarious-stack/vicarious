@@ -559,7 +559,7 @@ VICARIOUS by Vijay
     // Split Markdown into Sections at H1 boundaries
     function parseAndSplitSections(text) {
       // Split by H1 headers, but retain the header in the section content
-      const rawSections = text.split(/(?=^#\s+)/m);
+      const rawSections = text.split(/(?=^# (?:Chapter \d+|Interlude [IVXLCDM]+|Prologue|Epilogue|Appendices|VICARIOUS))/m);
       
       chapters = [];
       rawSections.forEach((sec, idx) => {
